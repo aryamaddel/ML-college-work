@@ -3,6 +3,8 @@
 # ///
 
 import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
@@ -31,3 +33,9 @@ y_pred = logreg.predict(X_test_scaled)
 print("Logistic Regression on Breast Cancer Dataset:")
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print("\nClassification Report:\n", classification_report(y_test, y_pred))
+
+# Visualize Confusion Matrix
+plt.figure(figsize=(8, 6))
+ConfusionMatrixDisplay.from_estimator(logreg, X_test_scaled, y_test, cmap=plt.cm.Blues)
+plt.title("Logistic Regression Confusion Matrix")
+plt.show()

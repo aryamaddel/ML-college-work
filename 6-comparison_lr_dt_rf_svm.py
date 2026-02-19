@@ -3,6 +3,7 @@
 # ///
 
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
@@ -41,6 +42,7 @@ models = {
 }
 
 # Compare
+results = {}
 print("Model Comparison on Synthetic Dataset:")
 for name, model in models.items():
     if name in ["Logistic Regression", "SVM"]:
@@ -51,4 +53,15 @@ for name, model in models.items():
         pred = model.predict(X_test)
 
     acc = accuracy_score(y_test, pred)
+    results[name] = acc
     print(f"{name} Accuracy: {acc:.4f}")
+
+# Visualize Comparison
+plt.figure(figsize=(10, 6))
+plt.bar(results.keys(), results.values(), color=["blue", "green", "red", "purple"])
+plt.title("Model Accuracy Comparison")
+plt.ylabel("Accuracy")
+plt.ylim(0, 1.1)
+for i, v in enumerate(results.values()):
+    plt.text(i, v + 0.02, f"{v:.2f}", ha="center")
+plt.show()

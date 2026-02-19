@@ -4,6 +4,7 @@
 
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 # Load
 df = pd.read_csv("Chocolate Sales.csv")
@@ -28,3 +29,12 @@ df.to_csv("chocolate_cleaned.csv", index=False)
 print("Data Preprocessing Complete.")
 print(df.head())
 print(df.info())
+
+# Visualize "Boxes Shipped" Distribution
+plt.figure(figsize=(10, 6))
+plt.hist(df["Boxes Shipped"], bins=20, color="skyblue", edgecolor="black")
+plt.title("Distribution of Boxes Shipped")
+plt.xlabel("Boxes Shipped")
+plt.ylabel("Frequency")
+plt.grid(axis="y", alpha=0.75)
+plt.show()

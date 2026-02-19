@@ -3,6 +3,8 @@
 # ///
 
 import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
@@ -34,3 +36,9 @@ print(f"Naive Bayes Accuracy: {accuracy_score(y_test, y_pred_nb):.4f}")
 print(f"KNN Accuracy: {accuracy_score(y_test, y_pred_knn):.4f}")
 
 print("\nKNN Report:\n", classification_report(y_test, y_pred_knn))
+
+# Visualize Confusion Matrix for KNN
+plt.figure(figsize=(8, 6))
+ConfusionMatrixDisplay.from_estimator(knn, X_test, y_test, cmap=plt.cm.Blues)
+plt.title("KNN Confusion Matrix")
+plt.show()
